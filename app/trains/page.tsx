@@ -16,7 +16,7 @@ export default function TrainList() {
   const [currentTime, setCurrentTime] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("time");
-  const [trains, setTrains] = useState([
+  const [trains] = useState([
     { name: "Rajdhani Express", departure: "08:30 AM", price: "₹1,500", duration: "6h 45m" },
     { name: "Shatabdi Express", departure: "10:00 AM", price: "₹1,200", duration: "5h 30m" },
     { name: "Duronto Express", departure: "07:15 AM", price: "₹1,800", duration: "7h 10m" },
