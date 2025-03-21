@@ -6,7 +6,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes, faTrain, faSignInAlt, faTicketAlt, faList, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import train from "./htrain.webp"
+import train from "./htrain.webp";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 export default function Auth() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState<string | null>(null);
@@ -157,7 +158,7 @@ const NavLink = ({ href, label }: { href: string; label: string }) => (
   </Link>
 );
 
-const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: any; href: string; sidebarOpen: boolean }) => (
+const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: IconDefinition; href: string; sidebarOpen: boolean }) => (
   <Link href={href} className="flex items-center space-x-2 py-3 px-4 w-full hover:bg-gray-700 rounded transition">
     <FontAwesomeIcon icon={icon} className="text-lg" />
     {sidebarOpen && <span>{label}</span>}

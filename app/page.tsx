@@ -6,29 +6,24 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes, faTrain, faSignInAlt, faTicketAlt, faList, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import train from "./htrain.webp"
+import train from "./htrain.webp";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const [currentTime, setCurrentTime] = useState("");
+  const [currentTime, setCurrentTime] = useState<string | null>(null);
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
+useEffect(() => {
+  const updateClock = () => {
+    const now = new Date();
+    setCurrentTime(now.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }));
+  };
+  const clockInterval = setInterval(updateClock, 1000);
+  updateClock();
 
-    const updateClock = () => {
-      const now = new Date();
-      setCurrentTime(now.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }));
-    };
-    const clockInterval = setInterval(updateClock, 1000);
-    updateClock();
+  return () => clearInterval(clockInterval);
+}, []);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearInterval(clockInterval);
-    };
-  }, []);
 
   return (
     
@@ -150,7 +145,7 @@ export default function Home() {
   );
 }
 
-const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: any; href: string; sidebarOpen: boolean }) => (
+const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: IconDefinition; href: string; sidebarOpen: boolean }) => (
   <Link href={href} className="flex items-center space-x-2 py-3 px-4 w-full hover:bg-gray-700 rounded transition">
     <FontAwesomeIcon icon={icon} className="text-lg" />
     {sidebarOpen && <span>{label}</span>}

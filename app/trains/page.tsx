@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBars, faTimes, faTrain, faCalendarAlt, faSearch, faFilter, faSort, faMapMarkerAlt, faTicketAlt, faSignInAlt, faList
+  faBars, faTimes, faTrain,faMapMarkerAlt, faTicketAlt, faSignInAlt, faList
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import train from "./htrain.webp"
+import train from "./htrain.webp";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export default function TrainList() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -175,8 +176,7 @@ export default function TrainList() {
   );
 }
 
-/* ✅ Sidebar Navigation Item */
-const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: any; href: string; sidebarOpen: boolean }) => (
+const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: IconDefinition; href: string; sidebarOpen: boolean }) => (
   <Link href={href} className="flex items-center space-x-2 py-3 px-4 w-full hover:bg-gray-700 rounded transition">
     <FontAwesomeIcon icon={icon} className="text-lg" />
     {sidebarOpen && <span>{label}</span>}

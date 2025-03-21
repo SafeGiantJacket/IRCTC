@@ -8,6 +8,7 @@ import { faBars, faTimes, faTrain, faTicketAlt, faList, faMapMarkerAlt } from "@
 import map from './map.png';
 import Image from "next/image";
 import train from "./htrain.webp"
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export default function TrackTrain() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -183,7 +184,7 @@ export default function TrackTrain() {
   );
 }
 
-const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: any; href: string; sidebarOpen: boolean }) => (
+const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: IconDefinition; href: string; sidebarOpen: boolean }) => (
   <Link href={href} className="flex items-center space-x-2 py-3 px-4 w-full hover:bg-gray-700 rounded transition">
     <FontAwesomeIcon icon={icon} className="text-lg" />
     {sidebarOpen && <span>{label}</span>}

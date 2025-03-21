@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes, faTrain, faCalendarAlt, faSearch, faEdit, faMapMarkerAlt, faTicketAlt, faSignInAlt, faList } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes, faTrain, faSearch, faEdit, faMapMarkerAlt, faTicketAlt, faSignInAlt, faList } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import train from "./htrain.webp"
+import train from "./htrain.webp";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export default function Booking() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -47,7 +48,6 @@ export default function Booking() {
             </motion.aside>
 
       <div className="w-full transition-all" style={{ marginLeft: sidebarOpen ? "250px" : "80px" }}>
-        {/* ✅ Fixed Top Navigation Alignment */}
         <nav
         className={`fixed top-0 h-16 bg-gray-800 text-white flex justify-between items-center p-4 px-6 shadow-md transition-all duration-300 z-50 ${
         sidebarOpen ? "left-[250px] w-[calc(100%-250px)]" : "left-[80px] w-[calc(100%-80px)]"
@@ -200,18 +200,15 @@ const TrainDetails = ({ name, time, price }: { name: string; time: string; price
     <p className="text-blue-700 font-bold">Price: {price}</p>
   </div>
 );
-
-/* ✅ Sidebar Navigation Item */
-const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: any; href: string; sidebarOpen: boolean }) => (
-  <Link href={href} className="flex items-center space-x-2 py-3 px-4 w-full hover:bg-gray-700 rounded transition">
-    <FontAwesomeIcon icon={icon} className="text-lg" />
-    {sidebarOpen && <span>{label}</span>}
-  </Link>
-);
-
 const NavLink = ({ href, label }: { href: string; label: string }) => (
   <Link href={href} className="hover:underline transition-all px-3 py-2 rounded-md text-white hover:bg-gray-700">
     {label}
   </Link>
 );
 
+const NavItem = ({ label, icon, href, sidebarOpen }: { label: string; icon: IconDefinition; href: string; sidebarOpen: boolean }) => (
+  <Link href={href} className="flex items-center space-x-2 py-3 px-4 w-full hover:bg-gray-700 rounded transition">
+    <FontAwesomeIcon icon={icon} className="text-lg" />
+    {sidebarOpen && <span>{label}</span>}
+  </Link>
+);
